@@ -8,7 +8,6 @@ public class Homework1 {
 
         //2. Display the smallest number from an array of number
         int[] array = {-1, 0, 90, -25, 45, 85, 16, 9, -3};
-        displayArrayValues(array);
         smallestNumber(array);
         System.out.println();
 
@@ -23,15 +22,15 @@ public class Homework1 {
         System.out.println();
 
         //5. Display all the prime numbers lower than a given number
-        int limit = -200;
+        int limit = 200;
         displayPrimes(limit);
 
 
     }
 
     /**
-     *
-     * @param limit
+     *metoda care afiseaza numerele prime mai mici decat un numar dat
+     * @param limit este o variabila de tip intreg
      */
     private static void displayPrimes(int limit) {
         if (limit > 2) {
@@ -121,18 +120,6 @@ public class Homework1 {
         } else {
             System.out.println("The max digit from number " + oldNumber + " is: " + maxDigit);
         }
-    }
-
-    /**
-     * Metoda care afiseaza valorile elementelor din array
-     * @param array este un array de tip intreg
-     */
-    private static void displayArrayValues(int[] array) {
-        System.out.print("Elements of " + Arrays.toString(array));
-//        for (int element : array) {
-//            System.out.print(element + ", ");
-//        }
-        System.out.println();
     }
 
     /**
