@@ -50,7 +50,7 @@ public class Main {
         nElementInMap(15);
 
 //    7) Sort the above Set<String> (used for max) in reverse order
-        System.out.println("\nThe contest of the Set: ");
+        System.out.println("\nThe content of the Set: ");
         randomStringsSet.forEach(System.out::println);
         System.out.println("\nThe above Set<String> in reverse order: ");
         sortingStringsInReverseOrder(randomStringsSet).forEach(System.out::println);
@@ -85,14 +85,23 @@ public class Main {
 
     }
 
+    /**
+     * this method finds the shortest String in the Set
+     *
+     * @param set Set of String
+     * @return String type
+     */
     private static String shortestString(Set<String> set) {
-        return set.stream().max(Comparator.comparingInt(String::length)).get();
+        return set.stream().min(Comparator.comparingInt(String::length)).get();
     }
 
     /**
      * color is an Optional characteristic at Car objects
      * It is not necessary to define
      * It can be an empty field
+     *
+     * @param carList List of Car
+     * @return List of String
      */
     private static List<String> colorIsPresent(List<Car> carList) {
         return carList
@@ -103,6 +112,12 @@ public class Main {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * this method verifies that there is a car in List with a power of greater than 250
+     *
+     * @param carList List of Car
+     * @return boolean value
+     */
     private static boolean checkIf(List<Car> carList) {
         return carList
                 .stream()
@@ -110,6 +125,12 @@ public class Main {
                 .anyMatch(s -> s > 250);
     }
 
+    /**
+     * this method sorts the List in reverse order
+     *
+     * @param set Set of String
+     * @return List of String
+     */
     private static List<String> sortingStringsInReverseOrder(Set<String> set) {
         return set
                 .stream()
@@ -117,6 +138,12 @@ public class Main {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * this method sorts the List by the "make"
+     *
+     * @param set Set of Car
+     * @return List of Car
+     */
     private static List<Car> sortingCustomObjects(Set<Car> set) {
         return set
                 .stream()
@@ -124,6 +151,11 @@ public class Main {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * this method creates a Map with random numbers, and define the number of elements, which have value over 10
+     *
+     * @param n the number of the Integers
+     */
     private static void nElementInMap(int n) {
         Random random = new Random();
         int index = 1;
@@ -134,7 +166,7 @@ public class Main {
             index++;
         }
 
-        System.out.println("\nThe contest of the map: " + map);
+        System.out.println("\nThe content of the map: " + map);
 
         long nr = map
                 .entrySet()
@@ -146,6 +178,12 @@ public class Main {
 
     }
 
+    /**
+     * this method counts the elements of the list, calculates the exponential to the numbers,
+     * converts the List to Map, and then prints the elements out
+     *
+     * @param randomNumbersInList List of random Integer
+     */
     private static void randomNumbersInMap(List<Integer> randomNumbersInList) {
         List<Double> list = randomNumbersInList
                 .stream()
@@ -157,28 +195,43 @@ public class Main {
                 .stream()
                 .count();
 
+        int i = 0;
+        Map<Integer, Double> result = new HashMap<>();
+        for (Double element : list) {
+            result.put(++i, element);
+        }
 
         System.out.println("\nRandom numbers: ");
         randomNumbersInList.forEach(System.out::println);
         System.out.println("\nNumber of random numbers of Integer: " + number);
         System.out.println("\nThe exponential to the numbers: ");
-        list.forEach(System.out::println);
+        result.entrySet().forEach(entry -> {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        });
 
 
     }
 
+    /**
+     * this method generates a list of random number (less than 50) of random Integers
+     * @return List of Integer
+     */
     private static List<Integer> randomNumbersInList() {
         Random rand = new Random();
         return IntStream
                 .generate(() -> rand.nextInt(10))
-                .limit(20)
+                .limit(new Random().nextInt(50))
                 .boxed()
                 .collect(Collectors.toList());
     }
 
     /**
+     * this method returns the last String in alphabetical order
      * The String Comparator compares two Strings character by character lexicographically based on natural ordering
      * and returns an int type value
+     *
+     * @param randomStringsSet Set of String
+     * @return String type
      */
     private static String maxFromStrings(Set<String> randomStringsSet) {
         return randomStringsSet.stream()
@@ -186,6 +239,11 @@ public class Main {
                 .get();
     }
 
+    /**
+     * it generates a Set with random Strings
+     *
+     * @return Set of String
+     */
     private static Set<String> generateRandomStringSet() {
         Set<String> randomStrings = new HashSet<>();
         for (int i = 0; i < 5; i++) {
@@ -194,14 +252,26 @@ public class Main {
         return randomStrings;
     }
 
+    /**
+     * this method generates a random String with a random length less than 25
+     *
+     * @return String type
+     */
     private static String generateRandomString() {
         Random random = new Random();
         return random.ints(97, 122)
-                .limit(20)
+                .limit(new Random().nextInt(25))
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
     }
 
+
+    /**
+     * this method returns the min value of car powers
+     *
+     * @param carList List of Car
+     * @return double type value
+     */
     private static double findTheMinEngineCapacity(List<Car> carList) {
         double minEngineCapacity = carList
                 .stream()
@@ -213,8 +283,11 @@ public class Main {
     }
 
 
-    public static Set<Car> elementsThatStartWithM(List<Car> carList) {
-        System.out.println("Car make names which contain the letter 'a' and start with 'M': ");
+    /**
+     * this method Returns a set, in which each element mark name contains the letter 'a' and starts with 'M'
+     */
+    private static Set<Car> elementsThatStartWithM(List<Car> carList) {
+        System.out.println("Names that contain the letter 'a' and start with 'M': ");
         Set<Car> carsWithM = carList
                 .stream()
                 .filter(s -> s.getMake().contains("a"))
